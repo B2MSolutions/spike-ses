@@ -7,15 +7,16 @@ AWS.config.update({
   region: "us-east-1"
 });
 
+var to = process.env.SES_TO; // 'ooto@simulator.amazonses.com'
 console.log('Source: ' + process.env.SES_SOURCE);
-console.log('To: ' + process.env.SES_TO);
+console.log('To: ' + to);
 
 var ses = new AWS.SES();
 
 ses.sendEmail({
 	Source: process.env.SES_SOURCE,
 	Destination: {
-		ToAddresses: [process.env.SES_TO]
+		ToAddresses: [to]
 	},
 	Message: {
 		Subject: {
